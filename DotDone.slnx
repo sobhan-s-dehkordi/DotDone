@@ -1,0 +1,11 @@
+<Solution>
+  <Folder Name="/src/">
+    <Project Path="src/DotDone.Core/DotDone.Core.csproj" />
+    <Project Path="src/DotDone.Data/DotDone.Data.csproj" />
+    <Project Path="src/DotDone.Services/DotDone.Services.csproj" />
+    <Project Path="src/DotDone.UI/DotDone.UI.csproj" />
+  </Folder>
+  <Folder Name="/tests/">
+    <Project Path="tests/DotDone.Tests/DotDone.Tests.csproj" />
+  </Folder>
+</Solution>

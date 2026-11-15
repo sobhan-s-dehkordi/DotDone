@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "DotDone.UI (Package)": {
+      "commandName": "MsixPackage"
+    },
+    "DotDone.UI (Unpackaged)": {
+      "commandName": "Project"
+    }
+  }
+}

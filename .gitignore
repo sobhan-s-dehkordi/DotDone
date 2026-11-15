@@ -1,0 +1,78 @@
+## Build and Language Targets
+[Bb]in/
+[Oo]bj/
+[Dd]ebug/
+[Rr]elease/
+[Xx]64/
+[Xx]86/
+[Aa]rm/
+[Aa]rm64/
+bld/
+[Bb]uild/
+artifacts/
+
+## Visual Studio & IDEs
+.vs/
+.vscode/
+.idea/
+*.user
+*.userosscache
+*.suo
+*.userprefs
+*.sln.docstates
+*.DotSettings.user
+_ReSharper*/
+*.dotCover
+
+## Database and Local Storage (Data & Privacy Protection)
+*.db
+*.db-shm
+*.db-wal
+*.sqlite
+*.sqlite3
+*.mdf
+*.ldf
+**/DotDone_Data/
+**/Attachments/
+DotDone_Data/
+Attachments/
+
+## Secrets & Local Configuration
+secrets.json
+appsettings*.Development.json
+appsettings*.local.json
+*.env
+*.env.*
+*.local
+
+## Logging & Diagnostics
+[Ll]og/
+[Ll]ogs/
+*.log
+*.binlog
+
+## Test Results
+[Tt]est[Rr]esult*/
+*.trx
+*.coverage
+*.coveragexml
+
+## NuGet Packages & Caches
+*.nupkg
+*.snupkg
+*.nuget.props
+*.nuget.targets
+project.lock.json
+
+## MSIX & Packaging Output
+AppPackages/
+BundleArtifacts/
+*.msix
+*.msixupload
+*.appx
+*.appxbundle
+*.appxupload
+
+## Publish
+publish/
+PublishScripts/

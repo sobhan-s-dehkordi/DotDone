@@ -1,0 +1,77 @@
+<ContentDialog
+    x:Class="DotDone.UI.Dialogs.StreakGapDialog"
+    x:Name="RootDialog"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:vm="using:DotDone.UI.ViewModels"
+    mc:Ignorable="d"
+    FlowDirection="{x:Bind ViewModel.FlowDirection, Mode=OneWay}"
+    Title="{x:Bind ViewModel.L_Title, Mode=OneWay}"
+    PrimaryButtonText="{x:Bind ViewModel.L_YesPreserveStreak, Mode=OneWay}"
+    CloseButtonText="{x:Bind ViewModel.L_NoResetStreak, Mode=OneWay}"
+    DefaultButton="Primary"
+    FontFamily="{StaticResource AppFontFamily}"
+    HorizontalAlignment="Stretch"
+    VerticalAlignment="Stretch"
+    Style="{ThemeResource DefaultContentDialogStyle}">
+
+    <ScrollViewer MaxHeight="380" MaxWidth="480" HorizontalAlignment="Center" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled">
+        <StackPanel Spacing="16" Margin="4,2,4,4">
+            <!-- Question prompt -->
+            <TextBlock Text="{x:Bind ViewModel.QuestionMessage, Mode=OneWay}"
+                       TextWrapping="Wrap" FontSize="14" LineHeight="20"/>
+
+            <!-- Missed days list -->
+            <Border Background="{ThemeResource CardBackgroundFillColorSecondaryBrush}"
+                    Padding="12" CornerRadius="8">
+                <StackPanel Spacing="4">
+                    <TextBlock Text="{x:Bind ViewModel.L_MissedDaysHeader, Mode=OneWay}" FontWeight="SemiBold" FontSize="12"/>
+                    <ListView ItemsSource="{x:Bind ViewModel.FormattedMissedDays, Mode=OneWay}"
+                              SelectionMode="None" MaxHeight="80">
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding}" FontSize="12" Foreground="{ThemeResource AccentTextFillColorPrimaryBrush}"/>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                </StackPanel>
+            </Border>
+
+            <!-- Task Checklist for Retroactive Check-in -->
+            <StackPanel Spacing="8">
+                <TextBlock Text="{x:Bind ViewModel.L_SelectMissedTasksHeader, Mode=OneWay}"
+                           FontWeight="SemiBold" FontSize="13"/>
+
+                <ListView ItemsSource="{x:Bind ViewModel.AvailableItems, Mode=OneWay}"
+                          SelectionMode="None" MaxHeight="180"
+                          BorderThickness="1" BorderBrush="{ThemeResource CardStrokeColorDefaultBrush}"
+                          CornerRadius="6">
+                    <ListView.ItemTemplate>
+                        <DataTemplate x:DataType="vm:RetroactiveItemOption">
+                            <Grid Margin="0,4,0,4">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="Auto"/>
+                                </Grid.ColumnDefinitions>
+
+                                <CheckBox IsChecked="{x:Bind IsSelected, Mode=TwoWay}" Grid.Column="0" Margin="0,0,8,0"/>
+
+                                <StackPanel Grid.Column="1" VerticalAlignment="Center">
+                                    <TextBlock Text="{x:Bind Title}" FontSize="13" FontWeight="Medium"/>
+                                    <TextBlock Text="{x:Bind ItemType}" FontSize="10" Foreground="{ThemeResource TextFillColorSecondaryBrush}"/>
+                                </StackPanel>
+
+                                <ComboBox ItemsSource="{Binding ElementName=RootDialog, Path=ViewModel.MissedDays}"
+                                          SelectedItem="{x:Bind SelectedDate, Mode=TwoWay}"
+                                          Grid.Column="2" Width="130" FontSize="12"/>
+                            </Grid>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </StackPanel>
+        </StackPanel>
+    </ScrollViewer>
+</ContentDialog>
